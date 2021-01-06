@@ -1,15 +1,17 @@
 import 'dart:async';
+import 'dart:math';
 
-import 'package:flutter/material.dart';
 import 'package:PasswordStorageApp/models/password.dart';
+import 'package:PasswordStorageApp/utils/my_encrypt.dart';
+import 'package:flutter/material.dart';
 
 import 'button_wrap_parent_accent.dart';
 import 'button_wrap_parent_primary.dart';
 
 class PasswordListItem extends StatefulWidget {
-  Password password;
-  Function(Password) edit;
-  Function(int) delete;
+  final Password password;
+  final Function(Password) edit;
+  final Function(int) delete;
 
   PasswordListItem(this.password, this.edit, this.delete);
 
@@ -45,7 +47,6 @@ class _PasswordListItemState extends State<PasswordListItem> {
 
   @override
   Widget build(BuildContext context) {
-    print(password.platformName);
     return Stack(
       key: UniqueKey(),
       overflow: Overflow.clip,
@@ -103,7 +104,7 @@ class _PasswordListItemState extends State<PasswordListItem> {
                             }else{
                               //Start Time out for encrypt again
                               startTimeOut();
-                              pass = password.password;
+                              pass = MyEncrypt.myEncrypt.decrypt(password.password);
                             }
                           });
                         },

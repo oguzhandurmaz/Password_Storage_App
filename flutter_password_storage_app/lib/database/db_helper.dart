@@ -1,4 +1,5 @@
 import 'package:PasswordStorageApp/models/password.dart';
+import 'package:PasswordStorageApp/utils/my_encrypt.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -34,12 +35,16 @@ class DbHelper{
   Future<Password> getPassword(int id) async{
     var db = await this.database;
     //var result = await db.rawQuery("select * from passwords where id= $id");
-    var result = db.query("passwords",where: "id=?",whereArgs: [id],limit: 1);
+    var result = await db.query("passwords",where: "id=?",whereArgs: [id],limit: 1);
     return Password.fromObject(result);
   }
 
   Future<int> insert(Password password) async{
     var db = await this.database;
+
+    //Encrypt password
+    password.password = MyEncrypt.myEncrypt.encrypt(password.password);
+
     var result = await db.insert("passwords", password.toMap());
     return result;
   }
@@ -52,6 +57,10 @@ class DbHelper{
 
   Future<int> update(Password password) async{
     var db = await this.database;
+
+    //Encrypt password
+    password.password = MyEncrypt.myEncrypt.encrypt(password.password);
+    var a = MyEncrypt.myEncrypt.decrypt(password.password);
     var result = await db.update("passwords", password.toMap(),where: "id=?",whereArgs: [password.id]);
     return result;
   }
