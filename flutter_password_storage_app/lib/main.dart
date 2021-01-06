@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_password_storage_app/screens/login_page.dart';
-import 'package:flutter_password_storage_app/screens/password_add_page.dart';
-import 'package:flutter_password_storage_app/screens/password_edit_page.dart';
-import 'package:flutter_password_storage_app/screens/passwords_page.dart';
-import 'package:flutter_password_storage_app/screens/signup_page.dart';
-import 'package:flutter_password_storage_app/utils/constants.dart';
-import 'package:flutter_password_storage_app/viewmodels/passwords_view_model.dart';
+import 'package:PasswordStorageApp/screens/login_page.dart';
+import 'package:PasswordStorageApp/screens/password_add_page.dart';
+import 'package:PasswordStorageApp/screens/password_edit_page.dart';
+import 'package:PasswordStorageApp/screens/passwords_page.dart';
+import 'package:PasswordStorageApp/screens/signup_page.dart';
+import 'package:PasswordStorageApp/utils/constants.dart';
+import 'package:PasswordStorageApp/viewmodels/passwords_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

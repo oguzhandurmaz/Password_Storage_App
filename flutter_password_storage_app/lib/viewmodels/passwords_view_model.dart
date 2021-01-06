@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_password_storage_app/database/db_helper.dart';
-import 'package:flutter_password_storage_app/models/password.dart';
-import 'package:flutter_password_storage_app/utils/result.dart';
+import 'package:PasswordStorageApp/database/db_helper.dart';
+import 'package:PasswordStorageApp/models/password.dart';
+import 'package:PasswordStorageApp/utils/result.dart';
 
 class PasswordsViewModel with ChangeNotifier{
 
   DbHelper _dbHelper;
 
-  Result _passwordListResult;
-  Result get passwordListResult => _passwordListResult;
+  Result _passwordListState;
+  Result get passwordListState => _passwordListState;
+
+  Result _passwordDeleteState;
+  Result get passwordDeleteState => _passwordDeleteState;
 
   PasswordsViewModel(){
     _dbHelper = DbHelper();
@@ -16,7 +19,7 @@ class PasswordsViewModel with ChangeNotifier{
 
   void getPasswords() async{
     //Loading State
-    _passwordListResult = Result.loading("loading");
+    _passwordListState = Result.loading("loading");
     notifyListeners();
 
     print("get Passwords");
@@ -24,12 +27,22 @@ class PasswordsViewModel with ChangeNotifier{
     //Get Passwords
     try{
       List<Password> result = await _dbHelper.getPasswords();
-      _passwordListResult = Result.success(result);
+      _passwordListState = Result.success(result);
 
     }catch(error){
       //Error State
-      _passwordListResult = Result.error("Şifreler alınamadı");
+      _passwordListState = Result.error("Şifreler alınamadı");
     }
     notifyListeners();
+  }
+
+  Future<int> deletePassword(int id) async{
+    //Delete Passwords
+    try{
+      var result = await _dbHelper.delete(id);
+      return result;
+    }catch(error){
+      return 0;
+    }
   }
 }

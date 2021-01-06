@@ -1,13 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_password_storage_app/models/password.dart';
+import 'package:PasswordStorageApp/models/password.dart';
 
 import 'button_wrap_parent_accent.dart';
 import 'button_wrap_parent_primary.dart';
 
 class PasswordListItem extends StatefulWidget {
-  final Password password;
-  final Function(Password) edit;
-  final Function(int) delete;
+  Password password;
+  Function(Password) edit;
+  Function(int) delete;
 
   PasswordListItem(this.password, this.edit, this.delete);
 
@@ -18,8 +20,12 @@ class PasswordListItem extends StatefulWidget {
 
 class _PasswordListItemState extends State<PasswordListItem> {
   Password password;
-  final Function(Password) edit;
-  final Function(int) delete;
+  Function(Password) edit;
+  Function(int) delete;
+
+  final timeout = Duration(seconds: 3);
+  Timer _timer;
+
 
   String pass = "*********************";
   String dots = "*********************";
@@ -29,8 +35,19 @@ class _PasswordListItemState extends State<PasswordListItem> {
   _PasswordListItemState(this.password, this.edit, this.delete);
 
   @override
+  void dispose() {
+    if(_timer != null){
+      _timer.cancel();
+    }
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print(password.platformName);
     return Stack(
+      key: UniqueKey(),
       overflow: Overflow.clip,
       children: [
         Container(
@@ -76,8 +93,18 @@ class _PasswordListItemState extends State<PasswordListItem> {
                           //Decrypt
                           setState(() {
                             isEncrypted = !isEncrypted;
-                            pass = isEncrypted ? dots : password.password;
+                            if(isEncrypted){
+                              pass = dots;
 
+                              if(_timer != null){
+                                _timer.cancel();
+                              }
+
+                            }else{
+                              //Start Time out for encrypt again
+                              startTimeOut();
+                              pass = password.password;
+                            }
                           });
                         },
                         text: Text("Deşifre"),
@@ -98,9 +125,7 @@ class _PasswordListItemState extends State<PasswordListItem> {
           child: Transform.rotate(
               angle: -40,
               child: InkWell(
-                onTap: () {
-                  //delete
-                },
+                onTap: () => delete(password.id),
                 child: Icon(
                   Icons.add_circle,
                   size: 36,
@@ -112,5 +137,18 @@ class _PasswordListItemState extends State<PasswordListItem> {
         ),
       ],
     );
+  }
+
+  void startTimeOut(){
+    _timer = Timer(timeout, (){
+      setState(() {
+        isEncrypted = !isEncrypted;
+        pass = dots;
+      });
+    });
+  }
+
+  void handleTimeout() {
+
   }
 }

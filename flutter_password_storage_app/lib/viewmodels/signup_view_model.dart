@@ -1,8 +1,8 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter_password_storage_app/utils/constants.dart';
-import 'package:flutter_password_storage_app/utils/result.dart';
+import 'package:PasswordStorageApp/utils/constants.dart';
+import 'package:PasswordStorageApp/utils/result.dart';
 
 class SignupViewModel with ChangeNotifier{
 

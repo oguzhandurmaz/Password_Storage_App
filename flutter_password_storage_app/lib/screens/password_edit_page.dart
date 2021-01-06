@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_password_storage_app/models/password.dart';
-import 'package:flutter_password_storage_app/shared/button_match_parent_accent.dart';
-import 'package:flutter_password_storage_app/shared/password_text_field.dart';
-import 'package:flutter_password_storage_app/validation/ValidationMixin.dart';
-import 'package:flutter_password_storage_app/viewmodels/password_edit_view_model.dart';
+import 'package:PasswordStorageApp/models/password.dart';
+import 'package:PasswordStorageApp/shared/button_match_parent_accent.dart';
+import 'package:PasswordStorageApp/shared/password_text_field.dart';
+import 'package:PasswordStorageApp/validation/ValidationMixin.dart';
+import 'package:PasswordStorageApp/viewmodels/password_edit_view_model.dart';
 import 'package:provider/provider.dart';
 
 class PasswordEditPage extends StatefulWidget {

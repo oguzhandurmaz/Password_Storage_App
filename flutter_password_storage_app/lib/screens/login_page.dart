@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_password_storage_app/shared/button_match_parent_primary.dart';
-import 'package:flutter_password_storage_app/shared/button_match_parent_accent.dart';
-import 'package:flutter_password_storage_app/shared/password_text_field.dart';
-import 'package:flutter_password_storage_app/utils/constants.dart';
-import 'package:flutter_password_storage_app/utils/result.dart';
-import 'package:flutter_password_storage_app/validation/ValidationMixin.dart';
-import 'package:flutter_password_storage_app/viewmodels/login_view_model.dart';
+import 'package:PasswordStorageApp/shared/button_match_parent_primary.dart';
+import 'package:PasswordStorageApp/shared/button_match_parent_accent.dart';
+import 'package:PasswordStorageApp/shared/password_text_field.dart';
+import 'package:PasswordStorageApp/utils/constants.dart';
+import 'package:PasswordStorageApp/utils/result.dart';
+import 'package:PasswordStorageApp/validation/ValidationMixin.dart';
+import 'package:PasswordStorageApp/viewmodels/login_view_model.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> with ValidationMixin {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Login"),
+          title: Text("Giriş"),
         ),
         body: ChangeNotifierProvider<LoginViewModel>(
           create: (context) => LoginViewModel(),

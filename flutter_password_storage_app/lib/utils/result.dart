@@ -3,7 +3,7 @@ class Result<T>{
 
   factory Result.success(T value) = SuccessState<T>;
   factory Result.error(T message) = ErrorState<T>;
-  factory Result.loading(T message) = LoadingState<T>;
+  factory Result.loading([T message]) = LoadingState<T>;
   factory Result.idle(T message) = IdleState<T>;
 
 }
@@ -17,7 +17,7 @@ class ErrorState<T> extends Result<T>{
   final T message;
 }
 class LoadingState<T> extends Result<T>{
-  LoadingState(this.message): super();
+  LoadingState([this.message]): super();
   final T message;
 }
 

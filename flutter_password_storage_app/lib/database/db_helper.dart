@@ -1,6 +1,6 @@
+import 'package:PasswordStorageApp/models/password.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:flutter_password_storage_app/models/password.dart';
 
 class DbHelper{
   Database _database;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_password_storage_app/database/db_helper.dart';
-import 'package:flutter_password_storage_app/models/password.dart';
-import 'package:flutter_password_storage_app/utils/result.dart';
+import 'package:PasswordStorageApp/database/db_helper.dart';
+import 'package:PasswordStorageApp/models/password.dart';
+import 'package:PasswordStorageApp/utils/result.dart';
 
 class PasswordEditViewModel with ChangeNotifier{
 
